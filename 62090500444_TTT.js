@@ -1,7 +1,7 @@
 
 const player = 'o';
 const computer = 'x';
- 
+
 var curplay = player;
 var gametable = [0,1,2,3,4,5,6,7,8];
 var vistable = [0,1,2,3,4,5,6,7,8];
@@ -58,21 +58,22 @@ function turn(btn){
     gametable[btn.id] = curplay;
     btn.src = 'image/'+curplay+ '.png';
     btn.disabled = true;
-vistable.splice(btn.id,1,'');
+vistable.splice(btn.id,1,'f');
     
     let gamestatus = checkWin();
-    if (gamestatus) endgame();
+    if (gamestatus) endgame(); 
 
     curplay = computer;
-    let num = Math.floor(Math.random(vistable)*9);
-    
-        if (num !== '') {
+    let num;
+    do {
+        num = Math.floor(Math.random(vistable)*9);
+    } while(num == '' );
             gametable[num] = curplay;
             vistable.splice(num,1,''); 
             var k = document.getElementById(num);
         k.src = 'image/'+ curplay +'.png';
         k.disabled = true; 
-        }
+        
 
         curplay = player;
 }
